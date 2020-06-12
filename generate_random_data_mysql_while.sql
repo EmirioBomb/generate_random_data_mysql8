@@ -2,6 +2,7 @@
 -- include chinese_name, sex, birthday, age, phone_number, chinese_address, slarary, email, chinese_job, status, entry_time, modify_time
 -- this mysql procedure just randomize simple but non-standard information
 -- you can try modify this procedure with function, if you thought it was dirty
+-- efficiency for >> while >= loop
 -- author: emirio
 -- version: v1.0
 -- date: 2020/6/12
