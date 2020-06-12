@@ -73,7 +73,7 @@ BEGIN
 	SET @tmp_job = '开发员,销售员,美工员,策划员,清洁员,管理员,工程师,研发师,演讲师,操作员,配送员,防卫员,医护员,技术员,信息员,实施员,维护员';
 	
 	-- loop data_num times
-    -- loop or repeat
+    -- the efficency order: for >> while >= loop
 	WHILE num <= data_num DO
 		-- set employee name
 		SET e_name = CONCAT(SUBSTR(@S_NAME,FLOOR(RAND()*LENGTH(@S_NAME)/3+1),1), SUBSTR(@G_NAME,FLOOR(RAND()*LENGTH(@G_NAME)/3+1),1), SUBSTR(@G_NAME,FLOOR(RAND()*LENGTH(@G_NAME)/3+1),1));
