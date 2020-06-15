@@ -17,4 +17,5 @@
   
 `improve insert effiency with for loops`
 * replace while loops with for loops
+* for loops is better than while loops in 1,000,000 class insertion
 
