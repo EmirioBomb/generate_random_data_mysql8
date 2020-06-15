@@ -13,5 +13,8 @@
 * chinese_job
 * status
 * entry_time
-* modify_time
+* modify_tim
+  
+`improve insert effiency with for loops`
+* replace while loops with for loops
 
