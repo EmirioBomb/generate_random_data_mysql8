@@ -1,19 +1,19 @@
 -- <generate random data>
 -- include chinese_name, sex, birthday, age, phone_number, chinese_address, slarary, email, chinese_job, status, entry_time, modify_time
 -- this mysql procedure just randomize simple but non-standard information
--- you can try modify this procedure with function, if you thought it was dirty
--- efficiency for >> while >= loop
+-- you can try modify this procedure with function call, if you thought this was so dirty
 -- author: emirio
--- version: v1.0
+-- version: v1.1
 -- date: 2020/6/12
--- tool: Navicat 12
 
 -- USE #db_name < should use a database to manipulate first >
 
 -- create procedure using by delimiter command
 DELIMITER && # set new delimiter
+
 DROP PROCEDURE IF EXISTS generate_random_data; # drop insert_multi procedure if it exists
 CREATE PROCEDURE generate_random_data(IN data_num INT) # generate data_num rows with random data
+
 BEGIN
 	DECLARE num INT DEFAULT 1; 
 	DECLARE e_name CHAR(30); 
@@ -73,8 +73,7 @@ BEGIN
 	-- set job type
 	SET @tmp_job = '开发员,销售员,美工员,策划员,清洁员,管理员,工程师,研发师,演讲师,操作员,配送员,防卫员,医护员,技术员,信息员,实施员,维护员';
 	
-	-- loop data_num times
-    -- the efficiency order: for >> while >= loop
+	-- loop insert data
 	WHILE num <= data_num DO
 		-- set employee name
 		SET e_name = CONCAT(SUBSTR(@S_NAME,FLOOR(RAND()*LENGTH(@S_NAME)/3+1),1), SUBSTR(@G_NAME,FLOOR(RAND()*LENGTH(@G_NAME)/3+1),1), SUBSTR(@G_NAME,FLOOR(RAND()*LENGTH(@G_NAME)/3+1),1));
@@ -124,8 +123,8 @@ BEGIN
 		-- set modify time
 		SET e_modify_time = e_entry_time;
 		
-		-- set @sql_values, use "\"" & "\"" format string and date type
-		-- set insert into statement
+		-- set @sql_values, use "\"" & "\"" format string and date type, like "xxx"
+		-- create insert into statement
 		SET @sql_values = CONCAT(@sql_values, "(", "\"",e_name, "\"", ",", e_sex, ",","\"", e_birthday, "\"",",", e_age, ",\"", e_phone,"\"",",","\"", e_address,"\"", ",", e_salary, ",", "\"", e_email,"\"", ",", "\"", e_job, "\"", ",", e_status, ",", e_dept_id, ",", "\"", e_entry_time, "\"", ",", "\"", e_modify_time, "\"",")");
 		
 		-- commit transcation per 1000 rows of data
@@ -139,7 +138,7 @@ BEGIN
 			DEALLOCATE PREPARE statement;
 			COMMIT;
 			
-			-- set initial statement
+			-- set initial insert statement
 			SET @sql_statement = 'INSERT INTO sys_employee (name, sex, birthday, age, phone, address, salary, email, job, status, dept_id, entry_time, modify_time) values';
 			SET @sql_values = '';
 		ELSE
@@ -152,6 +151,8 @@ BEGIN
 END
 &&
 
-DELIMITER ;
+DELIMITER ; # set origin delimiter
+
 CALL generate_random_data(10000); # specify a number to generate rows
+
 DROP PROCEDURE IF EXISTS generate_random_data;
