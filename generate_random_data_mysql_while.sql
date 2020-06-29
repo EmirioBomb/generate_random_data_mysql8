@@ -128,7 +128,7 @@ BEGIN
 		SET @sql_values = CONCAT(@sql_values, "(", "\"",e_name, "\"", ",", e_sex, ",","\"", e_birthday, "\"",",", e_age, ",\"", e_phone,"\"",",","\"", e_address,"\"", ",", e_salary, ",", "\"", e_email,"\"", ",", "\"", e_job, "\"", ",", e_status, ",", e_dept_id, ",", "\"", e_entry_time, "\"", ",", "\"", e_modify_time, "\"",")");
 		
 		-- commit transcation per 1000 rows of data
-        -- current best efficency of batch transaction is 1000 in 1,000,000 rows data
+        	-- current best efficency of batch transaction is 1000 in 1,000,000 rows data
 		IF num % 1000 = 0 THEN
 			SET @sql_statement = CONCAT(@sql_statement, @sql_values, ";");
 			
