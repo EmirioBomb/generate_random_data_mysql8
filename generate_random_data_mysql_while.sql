@@ -16,7 +16,7 @@ CREATE PROCEDURE generate_random_data(IN data_num INT) # generate data_num rows 
 
 BEGIN
 	DECLARE num INT DEFAULT 1; 
-	DECLARE e_name CHAR(30); 
+	DECLARE e_name VARCHAR(30); 
 	DECLARE e_sex INT; 
 	DECLARE e_birthday DATE; 
 	
@@ -43,7 +43,7 @@ BEGIN
 	DECLARE e_email_suffix VARCHAR(10);
 	DECLARE e_email VARCHAR(35);
 	
-	DECLARE e_job char(10);
+	DECLARE e_job VARCHAR(10);
 	DECLARE e_status TINYINT;
 	DECLARE e_dept_id BIGINT;
 	DECLARE e_entry_time DATE;
