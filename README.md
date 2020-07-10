@@ -1,4 +1,4 @@
-# generate_random_data_mysql8
+# generate random data on mysql8
 > generate simple but non-standard data on mysql
 > generate multiple rows with random data
 
